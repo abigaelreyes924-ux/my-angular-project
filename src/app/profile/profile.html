@@ -5,21 +5,33 @@
         <h2>Web Developer | Designer | UI/UX Developer</h2>
     </header>
     <section id="bio">
-        <h3 class="bio-about" id="bio-about-one">About Me</h3>
-        <p>I’m a passionate Web Developer specializing in building responsive, user-friendly websites and applications. With a strong foundation in front-end and back-end development, I love turning ideas into digital solutions that are both functional and visually engaging.</p>
+        <h3 #bioAboutMe class="bio-about" id="bio-about-one">About Me</h3>
+        <p>I’m a passionate Web Developer specializing in building responsive, user-friendly websites and applications.
+            With a strong foundation in front-end and back-end development, I love turning ideas into digital solutions
+            that are both functional and visually engaging.</p>
     </section>
     <section id="work">
-        <h3 class="work-title" id="work-title-one">My Work</h3>
+        <h3 #workTitleOne class="work-title" id="work-title-one">My Work</h3>
         <div class="project-content">
-            <div class="project" style="background-image: url('https://cdn.dribbble.com/userupload/38322877/file/original-169ec5f62cdf1cf3066d4e0166473988.png?format=webp&resize=400x300&vertical=center');" id="project1">Project 1</div>
-            <div class="project" style="background-image: url('https://cdn.dribbble.com/userupload/15348292/file/original-550121e73014313bd1804b74173df30f.png?format=webp&resize=400x300&vertical=center');" id="project2">Project 2</div>
+            <div class="project"
+                style="background-image: url('https://cdn.dribbble.com/userupload/38322877/file/original-169ec5f62cdf1cf3066d4e0166473988.png?format=webp&resize=400x300&vertical=center');"
+                id="project1">Project 1</div>
+            <div class="project"
+                style="background-image: url('https://cdn.dribbble.com/userupload/15348292/file/original-550121e73014313bd1804b74173df30f.png?format=webp&resize=400x300&vertical=center');"
+                id="project2">Project 2</div>
         </div>
         <div class="project-content-two">
-            <div class="project" style="background-image: url(https://cdn.dribbble.com/userupload/36411896/file/original-424121cdbd37f91cfd7b68e8142d765a.jpg?format=webp&resize=400x300&vertical=center);" id="project3">Project 3</div>
-            <div class="project" style="background-image: url(https://ucarecdn.com/cc522084-347e-4d7e-be3f-3bcc0d692c91/-/resize/2100x//-/format/auto/-/quality/smart_retina/-/resize/742x/);" id="project4">Project 4</div>
+            <div class="project"
+                style="background-image: url(https://cdn.dribbble.com/userupload/36411896/file/original-424121cdbd37f91cfd7b68e8142d765a.jpg?format=webp&resize=400x300&vertical=center);"
+                id="project3">Project 3</div>
+            <div class="project"
+                style="background-image: url(https://ucarecdn.com/cc522084-347e-4d7e-be3f-3bcc0d692c91/-/resize/2100x//-/format/auto/-/quality/smart_retina/-/resize/742x/);"
+                id="project4">Project 4</div>
         </div>
     </section>
     <footer class="footer">
-        Contact me thru my email: abigaelreyes924@gmail.com
+        <button (click)="myFunctionAlert()">Click to display alert message</button>
+        <button (click)="myFunctionOne()">Change My Work Title Font color to blue</button>
+        <button (click)="myFunctionTwo()">Change About Me any Font Size</button>
     </footer>
 </div>
