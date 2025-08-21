@@ -1,0 +1,71 @@
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 10px;
+    background-color: #4b3935;
+}
+
+h2 {
+   text-align: center;
+   font-size: large;
+}
+
+header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+section {
+    margin: 20px;
+}
+
+.project-content, .project-content-two {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.project {
+    width: 300px;
+    height: 300px;
+    border: 3px solid #6a4a3a;
+    margin: 25px;
+    display: inline-block;
+    text-align: center;
+    line-height: 300px;
+}
+
+
+h1, h2, footer p {
+    color: #f0e7d5;
+}
+
+h3, p, div {
+    color: #4b3935;
+}
+
+#bio, #work {
+    background-color: #f0e7d5;
+    padding: 15px;
+}
+
+footer {
+    background-color: #4b3935;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    color: #f0e7d5;
+}
+
+button {
+    background-color: #f0e7d5;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
