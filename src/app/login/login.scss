@@ -1,0 +1,37 @@
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #bc977d;
+
+    .login-wrapper {
+        background-color: #f0e7d5;
+        padding: 50px;
+        border-radius: 8px;
+
+        .left-container {}
+
+        .right-container {
+            .card-container {
+                .header-container {
+                    text-align: justify;
+                    padding-bottom: 10px;
+                }
+
+                .header-title {
+                    font-size: 30px;
+                    font-weight: bold;
+                }
+
+                    .username-input, .password-input, .submit-btn {
+                        padding-bottom: 10px; 
+                    }
+
+                .submit-btn {
+                    background-color: #4b3935;
+                }
+            }
+        }
+    }
+}
