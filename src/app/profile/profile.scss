@@ -64,9 +64,7 @@ footer {
     gap: 40px;
 }
 
-button {
-    background-color: #f0e7d5;
-    border-radius: 10px;
-    padding: 10px;
-    cursor: pointer;
+.update-action {
+    display: flex;
+    justify-content: space-between;
 }

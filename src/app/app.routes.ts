@@ -6,6 +6,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./profile/profile.routes').then(m => m.PROFILE_ROUTES)
   },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.routes').then(m => m.LOGIN_ROUTES)
+  },
   { path: '', redirectTo: 'profile', pathMatch: 'full' },
   { path: '**', redirectTo: 'profile' }
 ];
