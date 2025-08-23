@@ -11,6 +11,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./login/login.routes').then(m => m.LOGIN_ROUTES)
   },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.routes').then(m => m.ADMIN_ROUTES)
+  },
   { path: '', redirectTo: 'profile', pathMatch: 'full' },
   { path: '**', redirectTo: 'profile' }
 ];
