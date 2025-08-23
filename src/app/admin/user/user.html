@@ -1,0 +1,68 @@
+<div class="container py-3">
+    <h2 class="mb-3">User Management</h2>
+
+    <!-- Add User Form -->
+    <div class="card p-3 mb-3 shadow-sm">
+        <h5 class="mb-3">Add User</h5>
+        <form [formGroup]="userForm" (ngSubmit)="addUser()" class="row g-2">
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                <div class="text-danger small" *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
+                    Name is required
+                </div>
+            </div>
+            <div class="col-md-4">
+                <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                <div class="text-danger small" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+                    Valid email is required
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary w-100" [disabled]="userForm.invalid">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- User Table -->
+    <div class="card p-3 shadow-sm">
+        <h5 class="mb-3">Users</h5>
+        <table class="table table-striped align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 10%;">ID</th>
+                    <th style="width: 30%;">Name</th>
+                    <th style="width: 40%;">Email</th>
+                    <th style="width: 20%;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Edit row -->
+                <tr *ngIf="editingUserId && editUserForm" [formGroup]="editUserForm">
+                    <td>{{ editingUserId }}</td>
+                    <td>
+                        <input type="text" class="form-control" formControlName="name">
+                    </td>
+                    <td>
+                        <input type="email" class="form-control" formControlName="email">
+                    </td>
+                    <td>
+                        <button class="btn btn-success btn-sm me-1" (click)="saveEdit()"
+                            [disabled]="editUserForm.invalid">Save</button>
+                        <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+                    </td>
+                </tr>
+
+                <!-- Display rows -->
+                <tr *ngFor="let user of users" [hidden]="editingUserId === user.id">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm me-1" (click)="startEdit(user)">Edit</button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

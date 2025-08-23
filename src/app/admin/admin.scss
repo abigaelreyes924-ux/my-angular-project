@@ -1,0 +1,29 @@
+.admin-container {
+
+    /* Sidebar default & minimized */
+    .bg-dark {
+        width: 220px;
+    }
+
+    .sidebar-min {
+        width: 60px !important;
+        text-align: center;
+    }
+
+    .sidebar-min .nav-link span {
+        display: none;
+    }
+
+    /* Active nav link */
+    .nav-link.active {
+        background-color: #bc977d;
+        border-radius: 0.375rem;
+        font-weight: 500;
+    }
+
+    /* Logout link hover */
+    .mt-auto .nav-link:hover {
+        background-color: #dc3545;
+        /* red hover */
+    }
+}
