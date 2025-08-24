@@ -16,7 +16,9 @@ interface IUser {
 })
 export class User {
 
-users: IUser[] = [
+  pageTitle = "User Management";
+
+  users: IUser[] = [
     { id: 1, name: 'Alice Johnson', email: 'alice@mail.com' },
     { id: 2, name: 'Bob Smith', email: 'bob@mail.com' },
   ];

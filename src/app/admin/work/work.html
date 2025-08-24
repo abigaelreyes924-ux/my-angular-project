@@ -1,1 +1,82 @@
-<p>work works!</p>
+<div class="container py-3">
+    <h2 class="mb-3">{{ pageTitle }}</h2>
+
+    <!-- Add Company Form -->
+    <div class="card p-3 mb-3 shadow-sm">
+        <h5 class="mb-3">Add Company</h5>
+        <form [formGroup]="workForm" (ngSubmit)="addWork()" class="row g-2">
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Company Name" formControlName="companyName">
+                <div class="text-danger small"
+                    *ngIf="workForm.get('companyName')?.touched && workForm.get('companyName')?.invalid">
+                    Company name is required
+                </div>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Date Started" formControlName="dateStarted">
+                <div class="text-danger small"
+                    *ngIf="workForm.get('dateStarted')?.touched && workForm.get('dateStarted')?.invalid">
+                    Date started is required
+                </div>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Date Ended" formControlName="dateEnded">
+                <div class="text-danger small"
+                    *ngIf="workForm.get('dateEnded')?.touched && workForm.get('dateEnded')?.invalid">
+                    Date ended is required
+                </div>
+            </div>
+            <div class="col-3">
+                <button type="submit" class="btn btn-primary w-100" [disabled]="workForm.invalid">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Work Table -->
+    <div class="card p-3 shadow-sm">
+        <h5 class="mb-3">Companies</h5>
+         <table class="table table-striped align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Company Name</th>
+                    <th>Date Started</th>
+                    <th>Date Ended</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Edit row -->
+                <tr *ngIf="editingWorkId && editWorkForm" [formGroup]="editWorkForm">
+                    <td>{{ editingWorkId }}</td>
+                    <td>
+                        <input type="text" class="form-control" formControlName="companyName">
+                    </td>
+                    <td>
+                        <input type="email" class="form-control" formControlName="dateStarted">
+                    </td>
+                    <td>
+                        <input type="email" class="form-control" formControlName="dateEnded">
+                    </td>
+                    <td>
+                        <button class="btn btn-success btn-sm me-1" (click)="saveEdit()"
+                            [disabled]="editWorkForm.invalid">Save</button>
+                        <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+                    </td>
+                </tr>
+
+                <!-- Display rows -->
+                <tr *ngFor="let work of works" [hidden]="editingWorkId === work.id">
+                    <td>{{ work.id }}</td>
+                    <td>{{ work.companyName }}</td>
+                    <td>{{ work.dateStarted }}</td>
+                    <td>{{ work.dateEnded }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm me-1" (click)="startEdit(work)">Edit</button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteWork(work.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+         </table>
+    </div>
+</div>
