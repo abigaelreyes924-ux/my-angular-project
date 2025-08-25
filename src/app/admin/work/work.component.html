@@ -69,7 +69,7 @@
                 <tr *ngFor="let work of works" [hidden]="editingWorkId === work.id">
                     <td>{{ work.id }}</td>
                     <td>{{ work.companyName }}</td>
-                    <td>{{ work.dateStarted }}</td>
+                    <td>{{ work.dateStarted | date:'MMMM dd, y' }}</td>
                     <td>{{ work.dateEnded }}</td>
                     <td>
                         <button class="btn btn-warning btn-sm me-1" (click)="startEdit(work)">Edit</button>

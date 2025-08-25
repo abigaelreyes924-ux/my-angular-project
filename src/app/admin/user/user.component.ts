@@ -20,19 +20,28 @@ export class UserComponent {
   editUserForm: FormGroup | null = null;
   editingUserId: number | null = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(
+    private fb: FormBuilder, 
+    private userService: UserService
+  ) {
   }
 
   ngOnInit(): void {
     this.initForm();
-    this.getAllUsers();  // 👈 best place to call it
+    this.getAllUsers();
   }
 
   private initForm(): void {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      age: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      age: ['', 
+        [
+          Validators.required, 
+          Validators.pattern(/^[0-9]+$/),
+          Validators.min(18),
+          Validators.max(60)
+        ]],
     });
   }
 
@@ -50,7 +59,13 @@ export class UserComponent {
     this.editUserForm = this.fb.group({
       name: [user.name, Validators.required],
       email: [user.email, [Validators.required, Validators.email]],
-      age: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      age: [user.age, 
+        [
+          Validators.required, 
+          Validators.pattern(/^[0-9]+$/),
+          Validators.min(18),
+          Validators.max(60)
+        ]],
     });
   }
 
