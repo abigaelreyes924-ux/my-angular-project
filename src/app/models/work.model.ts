@@ -1,4 +1,4 @@
-interface IWork {
+export interface IWork {
     id: number;
     companyName: string;
     dateStarted: string;

@@ -1,0 +1,83 @@
+<div class="skill-container py-3">
+    <h2 class="mb-3">{{ pageTitle }}</h2>
+
+    <!-- Add Skill Form -->
+    <div class="card p-3 mb-3 shadow-sm">
+        <h5 class="mb-3">Add Skill</h5>
+        <form [formGroup]="skillForm" (ngSubmit)="addSkill()" class="row g-2">
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Skill Name" formControlName="skillName">
+                <div class="text-danger small"
+                    *ngIf="skillForm.get('skillName')?.touched && skillForm.get('skillName')?.invalid">
+                    Skill name is required
+                </div>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Proficiency" formControlName="proficiency">
+                <div class="text-danger small"
+                    *ngIf="skillForm.get('proficiency')?.touched && skillForm.get('proficiency')?.invalid">
+                    Proficiency is required
+                </div>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Number of year's Used"
+                    formControlName="numberOfyears">
+                <div class="text-danger small"
+                    *ngIf="skillForm.get('numberOfyears')?.touched && skillForm.get('numberOfyears')?.invalid">
+                    Number of years is required
+                </div>
+            </div>
+            <div class="col-3">
+                <button type="submit" class="btn btn-primary w-100" [disabled]="skillForm.invalid">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Skill Table -->
+    <div class="card p-3 shadow-sm">
+        <h5 class="mb-3">Skills</h5>
+        <table class="table table-striped align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Skill Name</th>
+                    <th>Proficiency (%)</th>
+                    <th>Number of Year's Used</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="editingSkillId && editSkillForm" [formGroup]="editSkillForm">
+                    <td>{{ editingSkillId }}</td>
+                    <td>
+                        <input type="text" class="form-control" formControlName="skillName">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" formControlName="proficiency">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" formControlName="numberOfyears">
+                    </td>
+                    <td>
+                        <button class="btn btn-success btn-sm me-1" (click)="saveEdit()"
+                            [disabled]="editSkillForm.invalid">Save</button>
+                        <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+                    </td>
+                </tr>
+
+                <!-- Display rows -->
+                <tr *ngFor="let skill of skills" [hidden]="editingSkillId === skill.id">
+                    <td>{{ skill.id }}</td>
+                    <td>{{ skill.skillName }}</td>
+                    <td>{{ skill.proficiency }}</td>
+                    <td>{{ skill.numberOfyears }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm me-1" (click)="startEdit(skill)">Edit</button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteSkill(skill.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

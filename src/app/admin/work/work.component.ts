@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { WorkService } from '../../services/work/work.service';
+import { IWork } from '../../models/work.model';
 
 @Component({
   selector: 'app-work',
@@ -75,8 +76,7 @@ export class WorkComponent {
   }
 
   getAllWorks() {
-    console.log('Tamiko');
-    this.workService.getUsers().subscribe(data => {
+    this.workService.getWorks().subscribe(data => {
       this.works = data;
     });
   }
