@@ -1,13 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
-interface IWork {
-  id: number;
-  companyName: string;
-  dateStarted: string;
-  dateEnded: string;
-}
+import { WorkService } from '../../services/work/work.service';
 
 @Component({
   selector: 'app-work',
@@ -21,11 +15,19 @@ export class WorkComponent {
 
   works: IWork[] = [];
 
-  workForm: FormGroup;
+  workForm!: FormGroup;
   editWorkForm: FormGroup | null = null;
   editingWorkId: number | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private workService: WorkService) {
+  }
+
+  ngOnInit(): void {
+    this.initForm();
+    this.getAllWorks();
+  }
+
+  private initForm(): void {
     this.workForm = this.fb.group({
       companyName: ['', Validators.required],
       dateStarted: ['', Validators.required],
@@ -41,17 +43,17 @@ export class WorkComponent {
     this.workForm.reset();
   }
 
-   // ✅ Start editing company
-    startEdit(work: IWork) {
-      this.editingWorkId = work.id;
-      this.editWorkForm = this.fb.group({
-        companyName: [work.companyName, Validators.required],
-        dateStarted: [work.dateStarted, Validators.required],
-        dateEnded: [work.dateEnded, Validators.required],
-      });
-    }
-  
-   // ✅ Save changes
+  // ✅ Start editing company
+  startEdit(work: IWork) {
+    this.editingWorkId = work.id;
+    this.editWorkForm = this.fb.group({
+      companyName: [work.companyName, Validators.required],
+      dateStarted: [work.dateStarted, Validators.required],
+      dateEnded: [work.dateEnded, Validators.required],
+    });
+  }
+
+  // ✅ Save changes
   saveEdit() {
     if (!this.editWorkForm || this.editWorkForm.invalid) return;
     const index = this.works.findIndex(u => u.id === this.editingWorkId);
@@ -71,4 +73,12 @@ export class WorkComponent {
   deleteWork(id: number) {
     this.works = this.works.filter(u => u.id !== id);
   }
+
+  getAllWorks() {
+    console.log('Tamiko');
+    this.workService.getUsers().subscribe(data => {
+      this.works = data;
+    });
+  }
+
 }
