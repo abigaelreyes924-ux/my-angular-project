@@ -63,7 +63,8 @@
                 </tr>
 
                 <!-- Display rows -->
-                <tr *ngFor="let user of users" [hidden]="editingUserId === user.id">
+                <ng-container *ngFor="let user of users">
+                <tr *ngIf="user.active" [hidden]="editingUserId === user.id">
                     <td>{{ user.id }}</td>
                     <td>{{ user.name | uppercase }}</td>
                     <td>{{ user.email }}</td>
@@ -73,6 +74,7 @@
                         <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button>
                     </td>
                 </tr>
+                 </ng-container>
             </tbody>
         </table>
     </div>
