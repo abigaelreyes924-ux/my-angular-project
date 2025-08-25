@@ -4,10 +4,10 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-profile',
   imports: [RouterLink],
-  templateUrl: './profile.html',
-  styleUrl: './profile.scss'
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.scss'
 })
-export class Profile {
+export class ProfileComponent {
 
   @ViewChild('workTitleOne') workTitleOne!: ElementRef;
   @ViewChild('bioAboutMe') bioAboutMe!: ElementRef;

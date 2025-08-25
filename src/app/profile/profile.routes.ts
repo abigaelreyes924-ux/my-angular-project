@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { Profile } from './profile';
+import { ProfileComponent } from './profile.component';
 
 export const PROFILE_ROUTES: Routes = [
-  { path: '', component: Profile }
+  { path: '', component: ProfileComponent }
 ];
