@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "companyName": "Yondu",
+        "dateStarted": "September 2021",
+        "dateEnded": "October 2023"
+    },
+    {
+        "id": 2,
+        "companyName": "Accenture",
+        "dateStarted": "November 2023",
+        "dateEnded": "Present"
+    }
+]

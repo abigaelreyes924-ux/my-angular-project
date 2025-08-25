@@ -7,10 +7,10 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-dashboard',
   imports: [CommonModule],
-  templateUrl: './dashboard.html',
-  styleUrl: './dashboard.scss'
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss'
 })
-export class Dashboard implements AfterViewInit {
+export class DashboardComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.createBarChart();

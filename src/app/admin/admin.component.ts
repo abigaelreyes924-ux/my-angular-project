@@ -5,10 +5,10 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-admin',
   imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
-  templateUrl: './admin.html',
-  styleUrl: './admin.scss'
+  templateUrl: './admin.component.html',
+  styleUrl: './admin.component.scss'
 })
-export class Admin {
+export class AdminComponent {
   isSidebarMinimized = true;
 
   toggleSidebar() {

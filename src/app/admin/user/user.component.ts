@@ -1,36 +1,38 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
-interface IUser {
-  id: number;
-  name: string;
-  email: string;
-}
+import { IUser } from '../../models/user.model';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-user',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './user.html',
-  styleUrl: './user.scss'
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.scss'
 })
-export class User {
+export class UserComponent {
 
   pageTitle = "User Management";
 
-  users: IUser[] = [
-    { id: 1, name: 'Alice Johnson', email: 'alice@mail.com' },
-    { id: 2, name: 'Bob Smith', email: 'bob@mail.com' },
-  ];
+  users: IUser[] = [];
 
-  userForm: FormGroup;
+  userForm!: FormGroup;
   editUserForm: FormGroup | null = null;
   editingUserId: number | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
+  }
+
+  ngOnInit(): void {
+    this.initForm();
+    this.getAllUsers();  // 👈 best place to call it
+  }
+
+  private initForm(): void {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      age: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
     });
   }
 
@@ -48,6 +50,7 @@ export class User {
     this.editUserForm = this.fb.group({
       name: [user.name, Validators.required],
       email: [user.email, [Validators.required, Validators.email]],
+      age: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
     });
   }
 
@@ -70,6 +73,12 @@ export class User {
   // ✅ Delete user
   deleteUser(id: number) {
     this.users = this.users.filter(u => u.id !== id);
+  }
+
+  getAllUsers() {
+    this.userService.getUsers().subscribe(data => {
+      this.users = data;
+    });
   }
 
 }

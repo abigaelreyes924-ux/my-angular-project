@@ -12,17 +12,14 @@ interface IWork {
 @Component({
   selector: 'app-work',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './work.html',
-  styleUrl: './work.scss'
+  templateUrl: './work.component.html',
+  styleUrl: './work.component.scss'
 })
-export class Work {
+export class WorkComponent {
 
   pageTitle = "Work Management";
 
-  works: IWork[] = [
-    { id: 1, companyName: 'Yondu', dateStarted: 'September 2021', dateEnded: 'October 2023' },
-    { id: 2, companyName: 'Accenture', dateStarted: 'November 2023', dateEnded: 'Present' },
-  ];
+  works: IWork[] = [];
 
   workForm: FormGroup;
   editWorkForm: FormGroup | null = null;

@@ -1,18 +1,18 @@
 import { Routes } from '@angular/router';
-import { Admin } from './admin';
-import { Dashboard } from './dashboard/dashboard';
-import { Work } from './work/work';
-import { User } from './user/user';
+import { AdminComponent } from './admin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { WorkComponent } from './work/work.component';
+import { UserComponent } from './user/user.component';
 
 
 export const ADMIN_ROUTES: Routes = [
   {
     path: '',
-    component: Admin,
+    component: AdminComponent,
     children: [
-      { path: 'dashboard', component: Dashboard },
-      { path: 'user', component: User },
-      { path: 'work', component: Work },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'user', component: UserComponent },
+      { path: 'work', component: WorkComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }

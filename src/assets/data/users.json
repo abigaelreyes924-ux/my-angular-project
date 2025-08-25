@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Joenel Raytana",
+        "email": "jraytana@mail.com",
+        "age": 34
+    },
+    {
+        "id": 2,
+        "name": "Abigael Bata Reyes",
+        "email": "ab_reyes@gmail.com",
+        "age": 32
+    }
+]
