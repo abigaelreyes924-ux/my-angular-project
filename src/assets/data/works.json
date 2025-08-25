@@ -2,13 +2,13 @@
     {
         "id": 1,
         "companyName": "Yondu",
-        "dateStarted": "September 2021",
-        "dateEnded": "October 2023"
+        "dateStarted": "2024-08-5",
+        "dateEnded": "August 30, 2025"
     },
     {
         "id": 2,
         "companyName": "Accenture",
-        "dateStarted": "November 2023",
+        "dateStarted": "2025-08-30",
         "dateEnded": "Present"
     }
 ]

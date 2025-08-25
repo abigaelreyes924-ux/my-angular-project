@@ -65,9 +65,9 @@
                 <!-- Display rows -->
                 <tr *ngFor="let user of users" [hidden]="editingUserId === user.id">
                     <td>{{ user.id }}</td>
-                    <td>{{ user.name }}</td>
+                    <td>{{ user.name | uppercase }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.age }}</td>
+                    <td>{{ user.age | currency }}</td>
                     <td>
                         <button class="btn btn-warning btn-sm me-1" (click)="startEdit(user)">Edit</button>
                         <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button>
