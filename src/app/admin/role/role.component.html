@@ -1,0 +1,107 @@
+<div class="role-container py-3">
+    <h2 class="mb-3">{{ pageTitle }}</h2>
+</div>
+
+<!-- Add Role Form -->
+<div class="card p-3 mb-3 shadow-sm">
+    <h5 class="mb-3">Add Role</h5>
+    <form [formGroup]="roleForm" (ngSubmit)="addRole()" class="row g-2">
+        <div class="col-3">
+            <input type="text" class="form-control" placeholder="Role Name" formControlName="roleName">
+            <div class="text-danger small"
+                *ngIf="roleForm.get('roleName')?.touched && roleForm.get('roleName')?.invalid">
+                Role name is required
+            </div>
+        </div>
+
+        <div class="col-2">
+            <select class="form-select" formControlName="position">
+                <option *ngFor="let p of positions" [value]="p.name">{{ p.name }}</option>
+            </select>
+            <div class="text-danger small"
+                *ngIf="roleForm.get('position')?.touched && roleForm.get('position')?.invalid">
+                Position is required
+            </div>
+        </div>
+
+        <div class="col-3">
+            <select class="form-select" formControlName="department">
+                <option *ngFor="let d of departments" [value]="d.name">{{ d.name }}</option>
+            </select>
+            <div class="text-danger small"
+                *ngIf="roleForm.get('department')?.touched && roleForm.get('department')?.invalid">
+                Department is required
+            </div>
+        </div>
+
+        <div class="col-2">
+            <select class="form-select" formControlName="isActive">
+                <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+            </select>
+            <div class="text-danger small"
+                *ngIf="roleForm.get('isActive')?.touched && roleForm.get('isActive')?.invalid">
+                Status is required
+            </div>
+        </div>
+
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary w-100" [disabled]="roleForm.invalid"
+                [class.disabled-btn]="roleForm.invalid">Add</button>
+        </div>
+    </form>
+</div>
+
+<div class="card p-3 shadow-sm">
+    <h5 class="mb-3">Roles</h5>
+    <table class="table table-striped align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Role Name</th>
+                <th>Position</th>
+                <th>Department</th>
+                <th>isActive</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="editingRoleId && editRoleForm" [formGroup]="editRoleForm">
+                <td>{{ editingRoleId }}</td>
+                <td>
+                    <input type="text" class="form-control" formControlName="roleName">
+                </td>
+                <td>
+                    <select class="form-select" formControlName="position">
+                        <option *ngFor="let p of positions" [value]="p.name">{{ p.name }}</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-select" formControlName="department">
+                        <option *ngFor="let d of departments" [value]="d.name">{{ d.name }}</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-select" formControlName="isActive">
+                        <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="btn btn-success btn-sm me-1" (click)="saveEdit()"
+                        [disabled]="editRoleForm.invalid">Save</button>
+                    <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+                </td>
+            </tr>
+            <!-- Display rows -->
+            <tr *ngFor="let role of roles" [hidden]="editingRoleId === role.id">
+                <td>{{ role.id }}</td>
+                <td>{{ role.roleName }}</td>
+                <td>{{ role.position }}</td>
+                <td>{{ role.department }}</td>
+                <td>{{ role.isActive }}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm me-1" (click)="startEdit(role)">Edit</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteRole(role.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

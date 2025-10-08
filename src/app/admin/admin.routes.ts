@@ -4,7 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkComponent } from './work/work.component';
 import { UserComponent } from './user/user.component';
 import { SkillComponent } from './skill/skill.component';
-
+import { RoleComponent } from './role/role.component';
 
 export const ADMIN_ROUTES: Routes = [
   {
@@ -15,6 +15,7 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'user', component: UserComponent },
       { path: 'work', component: WorkComponent },
       { path: 'skill', component: SkillComponent },
+      { path: 'role', component: RoleComponent},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
