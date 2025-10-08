@@ -1,0 +1,9 @@
+.disabled-btn {
+  pointer-events: all;
+  opacity: 0.65;
+}
+
+.disabled-btn:hover {
+  cursor: not-allowed;
+  background-color: #5a6268;
+}

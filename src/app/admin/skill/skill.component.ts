@@ -71,7 +71,7 @@ export class SkillComponent {
     this.editSkillForm = null;
   }
 
-  // ✅ Delete company
+  // ✅ Delete skill
   deleteSkill(id: number) {
     this.skills = this.skills.filter(u => u.id !== id);
   }
