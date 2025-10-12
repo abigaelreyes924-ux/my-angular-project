@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IUser } from '../../models/user.model';
 import { environment } from '../../../environments/environment';
 
@@ -33,7 +33,29 @@ export class UserService {
       });
     } else {
       // Call backend /create-user API
-      return this.http.post<IUser>(`${this.apiUrl}/user/create-user`, user);
+      return this.http.post<IUser>(`${this.apiUrl}/user/create`, user);
+    }
+  }
+
+    /** UPDATE user by ID */
+  updateUser(id: number, user: IUser): Observable<string> {
+    if (environment.useMockData) {
+      console.warn('Mock mode: updateUser() not persisted');
+      return of('User updated (mock)');
+    } else {
+      return this.http.put<string>(`${this.apiUrl}/user/update/${id}`, user);
+    }
+  }
+
+  /** DELETE user by ID */
+  deleteUser(id: number): Observable<{ message: string }> {
+    if (environment.useMockData) {
+      return new Observable(observer => {
+        observer.next({ message: 'User deleted successfully!' });
+        observer.complete();
+      });
+    } else {
+      return this.http.delete<{ message: string }>(`${this.apiUrl}/user/delete/${id}`);
     }
   }
 }
