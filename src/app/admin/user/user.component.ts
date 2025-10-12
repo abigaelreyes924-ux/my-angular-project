@@ -15,6 +15,7 @@ export class UserComponent {
   pageTitle = "User Management";
 
   users: IUser[] = [];
+  statuses = ['Active', 'Inactive'];
 
   userForm!: FormGroup;
   editUserForm: FormGroup | null = null;
@@ -42,15 +43,24 @@ export class UserComponent {
           Validators.min(18),
           Validators.max(60)
         ]],
+      active: [false]
     });
   }
 
   // ✅ Add new user
   addUser() {
-    if (this.userForm.invalid) return;
-    const nextId = this.users.length ? Math.max(...this.users.map(u => u.id)) + 1 : 1;
-    this.users.push({ id: nextId, ...this.userForm.value });
-    this.userForm.reset();
+    const user: IUser = this.userForm.value;
+
+    this.userService.createUser(user).subscribe({
+      next: (res) => {
+        console.log('Created user:', res);
+        this.userForm.reset({ active: false });
+        this.getAllUsers();
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 
   // ✅ Start editing a user
@@ -66,6 +76,7 @@ export class UserComponent {
           Validators.min(18),
           Validators.max(60)
         ]],
+      active: [user.active, Validators.required],
     });
   }
 

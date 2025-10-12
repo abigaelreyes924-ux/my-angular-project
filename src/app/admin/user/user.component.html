@@ -17,13 +17,27 @@
                     Valid email is required
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <input type="age" class="form-control" placeholder="Age" formControlName="age">
                 <div class="text-danger small" *ngIf="userForm.get('age')?.touched && userForm.get('age')?.invalid">
                     Valid Age is required
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-2 d-flex align-items-center">
+                <input
+                    type="checkbox"
+                    class="form-check-input me-2"
+                    id="activeCheckbox"
+                    formControlName="active"
+                />
+                <label for="activeCheckbox" class="form-check-label">isActive</label>
+
+                <div class="text-danger small"
+                    *ngIf="userForm.get('active')?.touched && userForm.get('active')?.invalid">
+                    Status is required
+                </div>
+            </div>
+            <div class="col-md-2">
                 <button type="submit" class="btn btn-primary w-100" [disabled]="userForm.invalid">Add</button>
             </div>
         </form>
