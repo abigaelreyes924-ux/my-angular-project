@@ -20,11 +20,11 @@
                 </div>
             </div>
             <div class="col-3">
-                <input type="text" class="form-control" placeholder="Number of year's Used"
-                    formControlName="numberOfyears">
+                <input type="text" class="form-control" placeholder="Months of Experience"
+                    formControlName="monthsOfExperience">
                 <div class="text-danger small"
-                    *ngIf="skillForm.get('numberOfyears')?.touched && skillForm.get('numberOfyears')?.invalid">
-                    Number of years is required
+                    *ngIf="skillForm.get('monthsOfExperience')?.touched && skillForm.get('monthsOfExperience')?.invalid">
+                    Months of Experience is required
                 </div>
             </div>
             <div class="col-3">
@@ -42,7 +42,7 @@
                     <th>ID</th>
                     <th>Skill Name</th>
                     <th>Proficiency (%)</th>
-                    <th>Number of Year's Used</th>
+                    <th>Months of Experience</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -56,26 +56,28 @@
                         <input type="text" class="form-control" formControlName="proficiency">
                     </td>
                     <td>
-                        <input type="text" class="form-control" formControlName="numberOfyears">
+                        <input type="text" class="form-control" formControlName="monthsOfExperience">
                     </td>
                     <td>
-                        <button class="btn btn-success btn-sm me-1" (click)="saveEdit()"
+                        <button class="btn btn-success btn-sm me-1" (click)="updateSkill()"
                             [disabled]="editSkillForm.invalid">Save</button>
                         <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
                     </td>
                 </tr>
 
                 <!-- Display rows -->
-                <tr *ngFor="let skill of skills" [hidden]="editingSkillId === skill.id">
-                    <td>{{ skill.id }}</td>
-                    <td>{{ skill.skillName }}</td>
-                    <td>{{ skill.proficiency }}</td>
-                    <td>{{ skill.numberOfyears }}</td>
-                    <td>
-                        <button class="btn btn-warning btn-sm me-1" (click)="startEdit(skill)">Edit</button>
-                        <button class="btn btn-danger btn-sm" (click)="deleteSkill(skill.id)">Delete</button>
-                    </td>
-                </tr>
+                <ng-container *ngFor="let skill of skills">
+                    <tr [hidden]="editingSkillId === skill.id">
+                        <td>{{ skill.id }}</td>
+                        <td>{{ skill.skillName }}</td>
+                        <td>{{ skill.proficiency }}</td>
+                        <td>{{ skill.monthsOfExperience }}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm me-1" (click)="startEdit(skill)">Edit</button>
+                            <button class="btn btn-danger btn-sm" (click)="deleteSkill(skill.id!)">Delete</button>
+                        </td>
+                    </tr>
+                </ng-container>
             </tbody>
         </table>
     </div>
