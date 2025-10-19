@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "roleName": "Software Development & Engineering",
+        "position": "Software Developer",
+        "department": "Engineering Department",
+        "isActive": "Active"
+    },
+    {
+        "id": 2,
+        "roleName": "Database & Systems Management",
+        "position": "Cyber Security Analyst",
+        "department": "Cyber Security Department",
+        "isActive": "Inactive"
+    }
+]
