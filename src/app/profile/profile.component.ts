@@ -1,29 +1,181 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  imports: [RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
 
-  @ViewChild('workTitleOne') workTitleOne!: ElementRef;
-  @ViewChild('bioAboutMe') bioAboutMe!: ElementRef;
+  leftNav = [
+    {
+      name: "Abigael Reyes",
+      url: "/profile",
+      type: "text",
+      section: "profiles"
+    }
+  ];
+
+  rightNav = [
+    {
+      name: "About",
+      url: "/about",
+      type: "text",
+      section: "abouts"
+    },
+    {
+      name: "Projects",
+      url: "/projects",
+      type: "text",
+      section: "projects"
+    },
+    {
+      name: "View Resume",
+      url: "/resume",
+      type: "button",
+      section: "resume"
+    }
+  ];
+
+  jobPosition = "Front-end Developer"
+  jobDescription = "I design and code beautifully simple things, and I love what I do."
+  projectDescription = "My design projects"
+  gitHub = "GitHub";
+  linkedin = "Linkedin";
+
+  projects = [
+    {
+      title: 'Portfolio Website',
+      description: 'A personal portfolio built with Angular and Bootstrap.',
+      image: 'assets/images/portfolio-website.png',
+      link: '/profile'
+    },
+    {
+      title: 'Admin Application',
+      description: 'A responsive Angular Admin Dashboard with user management and CRUD functionality.',
+      image: 'assets/images/admin-app.png',
+      link: '/admin/dashboard'
+    },
+    {
+      title: 'Login Page',
+      description: 'A responsive Angular for Log in Page.',
+      image: 'assets/images/login-app.png',
+      link: '/login'
+    }
+  ];
+
+  socials = [
+    {
+      title: 'Linkedin',
+      icon: 'bi bi-linkedin',
+      link: 'https://www.linkedin.com/in/abigael-reyes-663874389/'
+    },
+    {
+      title: 'GitHub',
+      icon: 'bi bi-github',
+      link: 'https://github.com/abigaelreyes924-ux/my-angular-project/tree/dev'
+    }
+  ];
+
+  aboutTitle = "Hi, I’m Abbie. Nice to meet you."
+  aboutDescription = "I'm a Frontend Focused Web Developer building and managing the Front-end of Websites with a strong passion for building modern, responsive, and user-focused web applications. I specialize in Angular, TypeScript, HTML, SCSS, and Bootstrap, developing clean, maintainable code that brings both performance and design to life."
+  skillTitle = "My Skills"
+
+  skills = [
+    {
+      title: 'Angular',
+    },
+    {
+      title: 'HTML',
+      icon: 'bi bi-filetype-html',
+    },
+    {
+      title: 'SCSS',
+      icon: 'bi bi-filetype-scss',
+    },
+    {
+      title: 'JavaScript',
+      icon: 'bi bi-javascript',
+    },
+    {
+      title: 'Responsive Design',
+    },
+    {
+      title: 'GIT',
+      icon: 'bi bi-git',
+    },
+    {
+      title: 'BootStrap',
+      icon: 'bi bi-bootstrap-fill',
+    },
+    {
+      title: 'TypeScript',
+      icon: 'bi bi-typescript',
+    },
+    {
+      title: 'GitHub',
+      icon: 'class="bi bi-github',
+    },
+    {
+      title: 'SEO',
+    },
+    {
+      title: 'Google Analytics',
+    }
+  ];
+
+  footerDescription = "Living, learning, & leveling up one day at a time."
+  socialFooter = "Social"
+  footerLower = "© Copyright 2025 Abigael L. Reyes"
+
+  icons = [
+    {
+      icon: 'bi bi-linkedin',
+      link: 'https://www.linkedin.com/in/abigael-reyes-663874389/'
+    },
+    {
+      icon: 'bi bi-github',
+      link: 'https://github.com/abigaelreyes924-ux/my-angular-project/tree/dev'
+    },
+    {
+      icon: 'bi bi-instagram',
+      link: ''
+    },
+    {
+      icon: 'bi bi-facebook',
+      link: ''
+    },
+    {
+      icon: 'bi bi-envelope',
+      link: ''
+    }
+  ];
+
+  menuOpen = false;
 
   constructor() { }
 
-  myFunctionOne() {
-    this.workTitleOne.nativeElement.style.color = 'blue';
+  viewProject(link: string) {
+    window.open(link, '_blank');
   }
 
-  myFunctionTwo() {
-    this.bioAboutMe.nativeElement.style.fontSize = '30px';
+  viewSocials(link: string) {
+    window.open(link, '_blank');
   }
 
-  myFunctionAlert() {
-    alert("Hello! This is an alert message.");
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
   }
 
 }
