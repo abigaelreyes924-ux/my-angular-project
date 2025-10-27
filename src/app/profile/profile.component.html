@@ -1,42 +1,156 @@
 <div class="profile-container">
+  <div class="profile-header row">
+    <div class="header-left-nav col-6">
+      <ul>
+        <li *ngFor="let left of leftNav"> <a *ngIf="left.type == 'text'" (click)="scrollToSection(left.section)"
+            class="left-nav-label">{{left.name}}</a> </li>
+      </ul>
+    </div>
+    <div class="header-right-nav col-6">
+      <ul>
+        <li *ngFor="let right of rightNav">
+          <button *ngIf="right.type == 'button'" type="button" class="btn btn-secondary view-resume-btn"
+            routerLink="right.url">
+            <i class="bi bi-book-fill"></i>
+            {{right.name}}
+          </button>
+          <a *ngIf="right.type == 'text'" (click)="scrollToSection(right.section)">
+            {{right.name}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="profile-introduction" id="profiles">
+    <div class="left-introduction">
+      <div class="job-position"> {{ jobPosition }} </div>
+      <div class="job-description"> {{ jobDescription }} </div>
+      <div class="socials-link mt-4"> <button *ngFor="let soc of socials" type="button" class="btn socials-btn"
+          (click)="viewProject(soc.link)"> <i [ngClass]="soc.icon"></i> {{soc.title}} </button> </div>
+    </div>
+    <div class="right-introduction"> <img class="profile-img" src="assets/images/my-profile.PNG" alt="Abigael Reyes" />
+    </div>
+  </div>
+  <div class="about-skill" id="abouts">
+    <div class="left-about">
+      <div class="about-title mb-4"> {{ aboutTitle }} </div>
+      <div class="about-description"> {{ aboutDescription }} </div>
+    </div>
+    <div class="right-skill">
+      <div class="skill-title mb-4"> {{ skillTitle }} </div>
+      <div class="skill-list">
+        <div *ngFor="let ski of skills" class="list-skill"> <i [ngClass]="ski.icon"></i> <span> {{ ski.title }}
+          </span> </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-project" id="projects">
+    <div class="project-description"> {{ projectDescription }} </div>
+    <div class="project-list">
+      <div class="col-md-4 mb-4" *ngFor="let project of projects">
+        <div class="project-card"> <img [src]="project.image" [alt]="project.title"
+            class="img-fluid rounded shadow-sm" />
+          <div class="overlay d-flex flex-column justify-content-center align-items-center text-center">
+            <h5 class="text-white mb-2">{{ project.title }}</h5>
+            <p class="text-light mb-3">{{ project.description }}</p> <button class="btn project-btn"
+              (click)="viewProject(project.link)"> View Project </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-footer" id="footer">
+    <div class="left-footer">
+      <div class="footer-description mb-2"> {{ footerDescription }} </div>
+      <div class="footer-lower"> {{ footerLower }} </div>
+    </div>
+    <div class="right-footer">
+      <div class="social-footer mb-2"> {{ socialFooter }} </div>
+      <div class="Icons-footer"> <button *ngFor="let ico of icons" type="button" class="btn icons-btn"
+          (click)="viewProject(ico.link)"> <i [ngClass]="ico.icon"></i> </button> </div>
+    </div>
+  </div>
+</div>
 
-    <header>
-        <img src="https://img.freepik.com/premium-vector/women-s-day-illustration_391639-696.jpg">
-        <h1>Abigael Reyes</h1>
-        <div class="update-action">
-            <div class="placeholder-div"></div>
-            <h2>Web Developer | Designer | UI/UX Developer</h2>
-            <button type="button" class="btn btn-secondary" routerLink="/login">Update Profile</button>
+<div class="mobile-profile-container">
+  <div class="profile-header row align-items-center justify-content-between">
+    <!-- Left navigation -->
+    <div class="header-left-nav col-6">
+      <ul>
+        <li *ngFor="let left of leftNav">
+          <a *ngIf="left.type == 'text'" (click)="scrollToSection(left.section)" class="left-nav-label">
+            {{ left.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right navigation (burger menu + dropdown) -->
+    <div class="header-right-nav col-6 d-flex justify-content-end align-items-center">
+      <!-- Burger Icon -->
+      <button class="burger-menu" (click)="toggleMenu()">
+        <i class="bi" [ngClass]="isMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Dropdown Menu (when burger clicked) -->
+  <div class="mobile-menu" [class.open]="isMenuOpen">
+    <div class="right-nav-container">
+      <div *ngFor="let right of rightNav" class="right-nav-menu">
+        {{ right.name }}
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-introduction" id="profiles">
+    <div class="profile-image-wrapper">
+      <img class="profile-img" src="assets/images/my-profile.PNG" alt="Abigael Reyes" />
+    </div>
+    <div class="job-position"> {{ jobPosition }} </div>
+    <div class="job-description"> {{ jobDescription }} </div>
+    <div class="socials-link mt-4">
+      <button *ngFor="let soc of socials" type="button" class="btn socials-btn" (click)="viewProject(soc.link)">
+        <i [ngClass]="soc.icon"></i>
+        {{soc.title}}
+      </button>
+    </div>
+  </div>
+  <div class="about-skill" id="abouts">
+    <div class="about-wrapper">
+      <div class="about-title mb-2"> {{ aboutTitle }} </div>
+      <div class="about-description"> {{ aboutDescription }} </div>
+    </div>
+    <div class="skill-wrapper">
+      <div class="skill-title mb-2"> {{ skillTitle }} </div>
+      <div class="skill-list">
+        <div *ngFor="let ski of skills" class="list-skill"> <i [ngClass]="ski.icon"></i> <span> {{ ski.title }}
+          </span> </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-project" id="projects">
+    <div class="project-description"> {{ projectDescription }} </div>
+    <div class="project-list">
+      <div class="col-sm-12 mb-4" *ngFor="let project of projects">
+        <div class="project-card"> <img [src]="project.image" [alt]="project.title"
+            class="img-fluid rounded shadow-sm" />
+          <div class="overlay d-flex flex-column justify-content-center align-items-center text-center">
+            <h5 class="text-white mb-2">{{ project.title }}</h5>
+            <p class="text-light mb-3">{{ project.description }}</p> <button class="btn project-btn"
+              (click)="viewProject(project.link)"> View Project </button>
+          </div>
         </div>
-    </header>
-    <section id="bio">
-        <h3 #bioAboutMe class="bio-about" id="bio-about-one">About Me</h3>
-        <p>I’m a passionate Web Developer specializing in building responsive, user-friendly websites and applications.
-            With a strong foundation in front-end and back-end development, I love turning ideas into digital solutions
-            that are both functional and visually engaging.</p>
-    </section>
-    <section id="work">
-        <h3 #workTitleOne class="work-title" id="work-title-one">My Work</h3>
-        <div class="project-content">
-            <div class="project" id="project-one">
-                <img class="work-img" src="assets/images/work-one.jpg" alt="Project 1" /> 
-            </div>
-            <div class="project" id="project-two">
-                <img class="work-img" src="assets/images/work-two.jpg" alt="Project 2" /> 
-            </div>
-        </div>
-        <div class="project-content-two">
-            <div class="project" id="project-three">
-                <img class="work-img" src="assets/images/work-three.jpg" alt="Project 3" /> 
-            </div>
-            <div class="project" id="project-four">
-                <img class="work-img" src="assets/images/work-four.jpg" alt="Project 4" /> 
-            </div>
-        </div>
-    </section>
-    <footer class="footer">
-        <button class="btn btn-secondary" (click)="myFunctionAlert()">Click to display alert message</button>
-        <button class="btn btn-secondary" (click)="myFunctionOne()">Change My Work Title Font color to blue</button>
-        <button class="btn btn-secondary" (click)="myFunctionTwo()">Change About Me any Font Size</button>
-    </footer>
+      </div>
+    </div>
+  </div>
+  <div class="main-footer" id="footer">
+    <div class="Icons-footer">
+      <button *ngFor="let ico of icons" type="button" class="btn icons-btn" (click)="viewProject(ico.link)">
+        <i [ngClass]="ico.icon"></i>
+      </button>
+    </div>
+    <div class="footer-description mb-2"> {{ footerDescription }} </div>
+    <div class="footer-lower"> {{ footerLower }} </div>
+  </div>
 </div>
