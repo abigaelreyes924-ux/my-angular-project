@@ -10,7 +10,7 @@
       <ul>
         <li *ngFor="let right of rightNav">
           <button *ngIf="right.type == 'button'" type="button" class="btn btn-secondary view-resume-btn"
-            routerLink="right.url">
+            (click)="handleAction(right.action)">
             <i class="bi bi-book-fill"></i>
             {{right.name}}
           </button>
@@ -74,31 +74,39 @@
 
 <div class="mobile-profile-container">
   <div class="profile-header row align-items-center justify-content-between">
-    <!-- Left navigation -->
-    <div class="header-left-nav col-6">
-      <ul>
-        <li *ngFor="let left of leftNav">
-          <a *ngIf="left.type == 'text'" (click)="scrollToSection(left.section)" class="left-nav-label">
-            {{ left.name }}
+    <div class="header-nav">
+      <!-- Left navigation -->
+      <div class="header-left-nav col-6">
+        <ul>
+          <li *ngFor="let left of leftNav">
+            <a *ngIf="left.type == 'text'" (click)="scrollToSection(left.section)" class="left-nav-label">
+              {{ left.name }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right navigation (burger menu + dropdown) -->
+      <div class="header-right-nav col-6 d-flex justify-content-end align-items-center">
+        <!-- Burger Icon -->
+        <button class="burger-menu" (click)="toggleMenu()">
+          <i class="bi" [ngClass]="isMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dropdown Menu (when burger clicked) -->
+    <div class="mobile-menu" [class.open]="isMenuOpen">
+      <div class="right-nav-container">
+        <div *ngFor="let right of rightNav" class="right-nav-menu">
+          <button *ngIf="right.type == 'button'" type="button" class="btn btn-secondary view-resume-btn"
+            (click)="handleAction(right.action)">
+            {{right.name}}
+          </button>
+          <a *ngIf="right.type == 'text'" (click)="scrollToSection(right.section)">
+            {{right.name}}
           </a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Right navigation (burger menu + dropdown) -->
-    <div class="header-right-nav col-6 d-flex justify-content-end align-items-center">
-      <!-- Burger Icon -->
-      <button class="burger-menu" (click)="toggleMenu()">
-        <i class="bi" [ngClass]="isMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- Dropdown Menu (when burger clicked) -->
-  <div class="mobile-menu" [class.open]="isMenuOpen">
-    <div class="right-nav-container">
-      <div *ngFor="let right of rightNav" class="right-nav-menu">
-        {{ right.name }}
+        </div>
       </div>
     </div>
   </div>
@@ -150,7 +158,7 @@
         <i [ngClass]="ico.icon"></i>
       </button>
     </div>
-    <div class="footer-description mb-2"> {{ footerDescription }} </div>
+    <div class="footer-description"> {{ footerDescription }} </div>
     <div class="footer-lower"> {{ footerLower }} </div>
   </div>
 </div>

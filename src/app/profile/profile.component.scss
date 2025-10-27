@@ -289,7 +289,14 @@ button {
             position: fixed;
             flex-wrap: wrap;
             overflow: hidden;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             border-bottom: 1px solid #eee;
+            padding: 10px 20px;
         }
 
         .header-left-nav {
@@ -303,7 +310,6 @@ button {
             display: flex;
             gap: 1rem;
             justify-content: flex-start;
-            padding-left: 30px;
         }
 
         .header-left-nav a {
@@ -342,7 +348,7 @@ button {
         .mobile-menu.open {
             display: block;
             animation: slideDown 0.3s ease;
-            padding-top: 50px;
+            padding: 10px 20px;
         }
 
         .mobile-menu ul {
@@ -359,10 +365,12 @@ button {
         .mobile-menu a,
         .mobile-menu button {
             font-size: 1rem;
-            color: #333;
+            color: #f0e7d5;
             text-decoration: none;
             background: none;
             border: none;
+            margin: 0;
+            padding: 0;
         }
 
         @keyframes slideDown {
