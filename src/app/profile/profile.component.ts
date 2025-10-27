@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
 
   leftNav = [
     {
@@ -155,9 +155,14 @@ export class ProfileComponent {
     }
   ];
 
-  menuOpen = false;
+  isMobile = false;
+  isMenuOpen = false;
 
   constructor() { }
+
+  ngOnInit() {
+    this.checkScreenSize();
+  }
 
   viewProject(link: string) {
     window.open(link, '_blank');
@@ -174,8 +179,17 @@ export class ProfileComponent {
     }
   }
 
+  @HostListener('window:resize', [])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768; // You can adjust breakpoint here
+  }
+
   toggleMenu() {
-    this.menuOpen = !this.menuOpen;
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
 }
