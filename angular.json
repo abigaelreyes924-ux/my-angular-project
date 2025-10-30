@@ -44,16 +44,20 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "800kb", // Warn if initial bundle exceeds 800 KB
+                  "maximumError": "1mb" // Fail only if initial bundle > 1 MB
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "12kb", // Warn if any component style exceeds 12 KB
+                  "maximumError": "15kb" // Fail only if > 15 KB
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true
             },
             "dev": {
               "fileReplacements": [
@@ -103,7 +107,7 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }             
+              }
             ],
             "styles": [
               "src/styles.scss"

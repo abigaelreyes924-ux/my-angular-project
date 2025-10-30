@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
@@ -37,7 +37,8 @@ export class ProfileComponent implements OnInit {
       name: "View Resume",
       url: "/resume",
       type: "button",
-      section: "resume"
+      section: "resume",
+      action: "view-resume",
     }
   ];
 
@@ -158,17 +159,23 @@ export class ProfileComponent implements OnInit {
   isMobile = false;
   isMenuOpen = false;
 
-  constructor() { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.checkScreenSize();
   }
 
   viewProject(link: string) {
-    window.open(link, '_blank');
+    console.log('viewProject: ', link);
+    if(link == '/profile') {
+      window.open(link, '_self');
+    } else {
+      this.router.navigate([link], { relativeTo: this.activatedRoute })
+    }
   }
 
   viewSocials(link: string) {
+    console.log('viewSocials: ', link);
     window.open(link, '_blank');
   }
 
@@ -190,6 +197,18 @@ export class ProfileComponent implements OnInit {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  handleAction(action?: string) {
+    if (action === 'view-resume') {
+      this.viewResume();
+    }
+  }
+
+  viewResume() {
+    console.log('viewResume');
+    const googleDriveLink = 'https://drive.google.com/drive/u/1/folders/1hIMNygmZ8ZzKJzdEvUPiuDmK8kD-y0EE';
+    window.open(googleDriveLink, '_blank');
   }
 
 }
