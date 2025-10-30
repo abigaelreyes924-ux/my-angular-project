@@ -17,7 +17,7 @@
                         <span class="input-group-text">
                             <i class="bi bi-person-fill"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <input [(ngModel)]="username" type="text" class="form-control" placeholder="Username" aria-label="Username"
                             aria-describedby="addon-wrapping">
                     </div>
 
@@ -25,18 +25,67 @@
                         <span class="input-group-text">
                             <i class="bi bi-lock-fill"></i>
                         </span>
-                        <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                        <input [(ngModel)]="password" type="password" class="form-control" placeholder="Password" aria-label="Password"
                             aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-primary submit-btn" routerLink="/admin">Submit</button>
+                    <button type="button" class="btn btn-primary submit-btn" (click)="login()">Submit</button>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
-   <!-- <button type="button" class="btn btn-secondary" routerLink="/login">Update Profile</button> -->
 
-   <!-- comment -->
+<!-- Success Modal -->
+<div
+  class="modal fade"
+  id="successModal"
+  tabindex="-1"
+  aria-labelledby="successModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-success">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="successModalLabel">Login Successful</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Welcome, Admin! Redirecting to your dashboard...
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Failed Modal -->
+<div
+  class="modal fade"
+  id="failedModal"
+  tabindex="-1"
+  aria-labelledby="failedModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-danger">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="failedModalLabel">Login Failed</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Invalid username or password. Please try again.
+      </div>
+    </div>
+  </div>
+</div>

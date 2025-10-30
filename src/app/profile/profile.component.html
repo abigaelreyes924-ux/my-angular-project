@@ -26,7 +26,7 @@
       <div class="job-position"> {{ jobPosition }} </div>
       <div class="job-description"> {{ jobDescription }} </div>
       <div class="socials-link mt-4"> <button *ngFor="let soc of socials" type="button" class="btn socials-btn"
-          (click)="viewProject(soc.link)"> <i [ngClass]="soc.icon"></i> {{soc.title}} </button> </div>
+          (click)="viewSocials(soc.link)"> <i [ngClass]="soc.icon"></i> {{soc.title}} </button> </div>
     </div>
     <div class="right-introduction"> <img class="profile-img" src="assets/images/my-profile.PNG" alt="Abigael Reyes" />
     </div>
@@ -67,7 +67,7 @@
     <div class="right-footer">
       <div class="social-footer mb-2"> {{ socialFooter }} </div>
       <div class="Icons-footer"> <button *ngFor="let ico of icons" type="button" class="btn icons-btn"
-          (click)="viewProject(ico.link)"> <i [ngClass]="ico.icon"></i> </button> </div>
+          (click)="viewSocials(ico.link)"> <i [ngClass]="ico.icon"></i> </button> </div>
     </div>
   </div>
 </div>
@@ -118,7 +118,7 @@
     <div class="job-position"> {{ jobPosition }} </div>
     <div class="job-description"> {{ jobDescription }} </div>
     <div class="socials-link mt-4">
-      <button *ngFor="let soc of socials" type="button" class="btn socials-btn" (click)="viewProject(soc.link)">
+      <button *ngFor="let soc of socials" type="button" class="btn socials-btn" (click)="viewSocials(soc.link)">
         <i [ngClass]="soc.icon"></i>
         {{soc.title}}
       </button>
@@ -154,7 +154,7 @@
   </div>
   <div class="main-footer" id="footer">
     <div class="Icons-footer">
-      <button *ngFor="let ico of icons" type="button" class="btn icons-btn" (click)="viewProject(ico.link)">
+      <button *ngFor="let ico of icons" type="button" class="btn icons-btn" (click)="viewSocials(ico.link)">
         <i [ngClass]="ico.icon"></i>
       </button>
     </div>

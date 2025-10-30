@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -158,17 +159,23 @@ export class ProfileComponent implements OnInit {
   isMobile = false;
   isMenuOpen = false;
 
-  constructor() { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.checkScreenSize();
   }
 
   viewProject(link: string) {
-    window.open(link, '_blank');
+    console.log('viewProject: ', link);
+    if(link == '/profile') {
+      window.open(link, '_self');
+    } else {
+      this.router.navigate([link], { relativeTo: this.activatedRoute })
+    }
   }
 
   viewSocials(link: string) {
+    console.log('viewSocials: ', link);
     window.open(link, '_blank');
   }
 
