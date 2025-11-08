@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
   projects = [
     {
       title: 'Portfolio Website',
-      description: 'A personal portfolio built with Angular and Bootstrap.',
+      description: 'A responsive personal portfolio built with Angular and Bootstrap, showcasing projects and contact information.',
       image: 'assets/images/portfolio-website.png',
       link: '/profile'
     },
@@ -62,8 +62,8 @@ export class ProfileComponent implements OnInit {
       link: '/admin/dashboard'
     },
     {
-      title: 'Login Page AB',
-      description: 'A responsive Angular for Log in Pages.',
+      title: 'Login Page',
+      description: 'A responsive Angular for Log in Page.',
       image: 'assets/images/login-app.png',
       link: '/login'
     }
