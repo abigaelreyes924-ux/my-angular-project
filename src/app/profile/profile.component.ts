@@ -62,7 +62,7 @@ export class ProfileComponent implements OnInit {
       link: '/admin/dashboard'
     },
     {
-      title: 'Login Page',
+      title: 'Login Page A',
       description: 'A responsive Angular for Log in Page.',
       image: 'assets/images/login-app.png',
       link: '/login'
