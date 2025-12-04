@@ -3,12 +3,12 @@
         "id": 1,
         "skillName": "Core Frontend Skills",
         "proficiency": "80",
-        "monthsOfExperience": "5"
+        "numberOfyears": "5"
     },
     {
         "id": 2,
         "skillName": "UI/UX & Design Tools",
         "proficiency": "90",
-        "monthsOfExperience": "3"
+        "numberOfyears": "3"
     }
 ]
