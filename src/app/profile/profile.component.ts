@@ -168,7 +168,7 @@ export class ProfileComponent implements OnInit {
   viewProject(link: string) {
     console.log('viewProject: ', link);
     if(link == '/profile') {
-      window.open(link, '_self');
+      window.location.reload();
     } else {
       this.router.navigate([link], { relativeTo: this.activatedRoute })
     }

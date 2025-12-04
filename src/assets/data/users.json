@@ -1,27 +1,21 @@
 [
+
     {
         "id": 1,
-        "name": "Joenel Raytana",
-        "email": "jraytana@mail.com",
-        "age": 34,
-        "active": true
-    },
-    {
-        "id": 2,
         "name": "Abigael Reyes",
         "email": "ab_reyes@gmail.com",
         "age": 32,
         "active": true
     },
     {
-        "id": 3,
+        "id": 2,
         "name": "Juan Dela Cruz",
         "email": "juan_dela_cruz@gmail.com",
         "age": 30,
         "active": false
     },
         {
-        "id": 4,
+        "id": 3,
         "name": "George W Bush",
         "email": "george_bush@gmail.com",
         "age": 60,
